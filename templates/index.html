@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QR Code Generator</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: #f7f7f7;
+        color: #333;
+        margin: 0;
+        padding: 20px;
+      }
+      h1 {
+        text-align: center;
+        color: #2c3e50;
+      }
+      form {
+        max-width: 600px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      select,
+      input[type="text"],
+      input[type="file"],
+      button {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+      }
+      button {
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+      }
+      button:hover {
+        background-color: #2980b9;
+      }
+      .conditional-input {
+        display: none; /* Initially hide all conditional inputs */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>QR Code Generator</h1>
+    <form action="/generate" method="POST" enctype="multipart/form-data">
+      <select name="qrType" id="qrType" required onchange="showFields()">
+        <option value="">Select QR Code Type</option>
+        <option value="url">URL</option>
+        <option value="vcard">VCard</option>
+        <option value="appstore">App Store Link</option>
+        <option value="image">Image</option>
+        <option value="pdf">PDF</option>
+      </select>
+
+      <!-- URL Input -->
+      <div id="urlInput" class="conditional-input">
+        <input type="text" name="url" placeholder="Enter URL" />
+      </div>
+
+      <!-- VCard Inputs -->
+      <div id="vcardInput" class="conditional-input">
+        <input type="text" name="name" placeholder="Name" />
+        <input type="text" name="fullname" placeholder="Full Name" />
+        <input type="text" name="phone" placeholder="Phone" />
+        <input type="text" name="email" placeholder="Email" />
+      </div>
+
+      <!-- App Store Input -->
+      <div id="appstoreInput" class="conditional-input">
+        <input
+          type="text"
+          name="appstore_link"
+          placeholder="Enter App Store Link"
+        />
+      </div>
+
+      <!-- Image Input -->
+      <div id="imageInput" class="conditional-input">
+        <input
+          type="file"
+          name="image_file"
+          accept="image/*"
+          placeholder="Upload Image"
+        />
+      </div>
+
+      <!-- PDF Input -->
+      <div id="pdfInput" class="conditional-input">
+        <input
+          type="file"
+          name="pdf_file"
+          accept="application/pdf"
+          placeholder="Upload PDF"
+        />
+      </div>
+
+      <button type="submit">Generate QR Code</button>
+    </form>
+
+    <script>
+      function showFields() {
+        // Hide all conditional inputs initially
+        const allInputs = document.querySelectorAll(".conditional-input");
+        allInputs.forEach((input) => (input.style.display = "none"));
+
+        // Get the selected QR Code type
+        const qrType = document.getElementById("qrType").value;
+
+        // Show relevant fields based on the selected QR Code type
+        if (qrType === "url") {
+          document.getElementById("urlInput").style.display = "block";
+        } else if (qrType === "vcard") {
+          document.getElementById("vcardInput").style.display = "block";
+        } else if (qrType === "appstore") {
+          document.getElementById("appstoreInput").style.display = "block";
+        } else if (qrType === "image") {
+          document.getElementById("imageInput").style.display = "block";
+        } else if (qrType === "pdf") {
+          document.getElementById("pdfInput").style.display = "block";
+        }
+      }
+    </script>
+  </body>
+</html>
