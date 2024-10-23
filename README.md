@@ -37,7 +37,7 @@ Before running the application, make sure you have the following installed:
 
     - pip install Flask qrcode[pil]
 4. Project Structure The project structure should look like this:
-
+```
     QR_Code_Generator/
     ├── main.py
     ├── templates/
@@ -45,14 +45,14 @@ Before running the application, make sure you have the following installed:
     │   └── show_qr.html
     └── static/
         └── qr_code.png (will be generated dynamically)
-
+```
 5. Create HTML Templates
 
    - index.html: The main form for inputting data to generate QR Codes. Includes dynamic input fields that show based on the selected QR Code type.
    - show_qr.html: Displays the generated QR Code.
 
     Example index.html:
-
+```
       <!DOCTYPE html>
       <html lang="en">
       <head>
@@ -70,6 +70,7 @@ Before running the application, make sure you have the following installed:
           </script>
       </body>
       </html>
+```
 
 6. Create the Flask Application In main.py, set up a basic Flask application:
 
@@ -93,3 +94,6 @@ Before running the application, make sure you have the following installed:
 
 ## Contributing
 Contributions are welcome! If you have suggestions or improvements, feel free to create an issue or submit a pull request.
+
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
